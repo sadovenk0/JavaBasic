@@ -1,8 +1,9 @@
 package ntudp.pzks.lab4.model;
 
  import java.util.List;
+ import java.util.Objects;
 
- public class University {
+public class University {
      private String name;
      private Human head;
      private List<Faculty> faculties;
@@ -33,5 +34,20 @@ package ntudp.pzks.lab4.model;
             sb.append(faculty.toString()).append("\n");
          }
          return sb.toString();
+     }
+
+     @Override
+     public boolean equals(Object o) {
+         if (this == o) return true;
+         if (o == null || getClass() != o.getClass()) return false;
+         University that = (University) o;
+         return Objects.equals(name, that.name) &&
+                 Objects.equals(head, that.head) &&
+                 Objects.equals(faculties, that.faculties);
+     }
+
+     @Override
+     public int hashCode() {
+         return Objects.hash(name, head, faculties);
      }
  }
